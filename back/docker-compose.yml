@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  db:
+    image: mongo
+    container_name: db
+    restart: always
+    networks:
+      - default
+    ports:
+      - "27017:27017"
+    volumes:
+      - './data:/data/db'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+  web:
+    image: nikl/flashcards
+    ports:
+        - "4000:4000"
+    networks:
+        - default
+    command: ["node", "src/index.js"]
+    depends_on:
+        - db
+    environment:
+      - MONGO_USERNAME=root
+      - MONGO_PASSWORD=root
+
+networks:
+  default:
+volumes:
+    dbdata:
