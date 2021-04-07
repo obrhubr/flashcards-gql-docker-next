@@ -24,6 +24,10 @@ const resolvers = {
             };
             let card = Flashcard.findByIdAndUpdate(id, updatedFlashcard, {new: true});
             return card;
+        },
+        deleteFlashcard: async (_, { id }) => {
+            let card = Flashcard.findByIdAndRemove(id);
+            return card;
         }
     }
 };

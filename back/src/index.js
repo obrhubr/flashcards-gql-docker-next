@@ -1,11 +1,14 @@
 const { ApolloServer } = require("apollo-server-express");
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require('cors');
 const { resolvers } = require("./resolvers");
 const { typeDefs } = require("./typeDefs");
 
 const startServer = async () => {
     const app = express();
+
+    app.use(cors());
 
     const server = new ApolloServer({
         typeDefs,

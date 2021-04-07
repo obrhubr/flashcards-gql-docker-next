@@ -13,6 +13,7 @@ const typeDefs = gql`
     type Mutation {
         createFlashcard(name: String!, text: String!): Flashcard!
         updateFlashcard(id: ID!, name: String, text: String): Flashcard!
+        deleteFlashcard(id: ID!): Flashcard
     }
 `;
 
